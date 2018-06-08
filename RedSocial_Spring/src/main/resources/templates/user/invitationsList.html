@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="fragments/head" />
+
+    <body>
+        <!-- Barra de Navegación superior -->
+        <nav th:replace="fragments/nav" />
+        <div class="container">
+            <h2 th:text="#{invitationListTitle.message}">Invitaciones</h2>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th th:text="#{userDetailsName.message}">Nombre</th>
+                            <th th:text="#{userDetailsEmail.message}">Correo</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="i : ${invitationsList}">
+                            <td th:text="${i.sender.name}">NombreUsuario</td>
+                            <td th:text="${i.sender.email}">Correo</td>
+                            <td><a th:id="${i.sender.name}" th:text="#{acceptInvitation.message}" th:href="${'/acceptInvitation/' + i.sender.id}">Aceptar</a></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer th:replace="fragments/pagination"/>
+        </div>
+        <footer th:replace="fragments/footer" />
+    </body>
+</html>
